@@ -29,7 +29,3 @@ function operate(operator, firstNumber, secondNumber) {
       break;
   }
 }
-
-let firstNumber;
-let secondNumber;
-let operator;

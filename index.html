@@ -8,30 +8,43 @@
     <title>Calculator</title>
   </head>
   <body>
-    <h1 class="title">Calculator</h1>
     <div class="calculator">
-      <div class="calculator__display">540</div>
+      <div class="calculator__display">0</div>
       <div class="calculator__keyboard">
-        <button type="button">7</button>
-        <button type="button">8</button>
-        <button type="button">9</button>
-        <button type="button">/</button>
+        <button type="button" data-type="clear-all" class="clear-all">
+          AC
+        </button>
+        <button type="button" data-type="backspace" class="backspace">
+          <img src="./img/backspace_icon.svg" alt="Backspace icon" />
+        </button>
+        <button type="button" data-type="operator" value="/" class="operator">
+          ÷
+        </button>
 
-        <button type="button">4</button>
-        <button type="button">5</button>
-        <button type="button">6</button>
-        <button type="button">-</button>
+        <button type="button" data-type="number" value="7">7</button>
+        <button type="button" data-type="number" value="8">8</button>
+        <button type="button" data-type="number" value="9">9</button>
+        <button type="button" data-type="operator" value="*" class="operator">
+          *
+        </button>
 
-        <button type="button">1</button>
-        <button type="button">2</button>
-        <button type="button">3</button>
-        <button type="button">+</button>
+        <button type="button" data-type="number" value="4">4</button>
+        <button type="button" data-type="number" value="5">5</button>
+        <button type="button" data-type="number" value="6">6</button>
+        <button type="button" data-type="operator" value="-" class="operator">
+          -
+        </button>
 
-        <button type="button">0</button>
+        <button type="button" data-type="number" value="1">1</button>
+        <button type="button" data-type="number" value="2">2</button>
+        <button type="button" data-type="number" value="3">3</button>
+        <button type="button" data-type="operator" value="+" class="operator">
+          +
+        </button>
 
-        <button type="button">=</button>
-        <button type="button">C</button>
-        <button type="button">*</button>
+        <button type="button" data-type="number" value=".">.</button>
+        <button type="button" data-type="number" value="0">0</button>
+        <button type="button" data-type="equal" class="equal">=</button>
       </div>
     </div>
   </body>
