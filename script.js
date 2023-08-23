@@ -44,6 +44,29 @@ function numberClick(numberValue) {
   updateDisplay();
 }
 
+function operatorClick(operatorValue) {
+  if (firstNumber && operator) {
+    secondNumber = displayValue;
+    displayValue = String(operate(operator, +firstNumber, +secondNumber));
+    firstNumber = displayValue;
+    secondNumber = null;
+    operator = operatorValue;
+    updateDisplay();
+  } else {
+    firstNumber = displayValue;
+    operator = operatorValue;
+  }
+}
+
+function equalClick() {
+  secondNumber = displayValue;
+  displayValue = String(operate(operator, +firstNumber, +secondNumber));
+  firstNumber = displayValue;
+  secondNumber = null;
+  operator = null;
+  updateDisplay();
+}
+
 let firstNumber = null;
 let secondNumber = null;
 let operator = null;
@@ -60,6 +83,12 @@ keyboard.addEventListener('click', function (e) {
     switch (buttonType) {
       case 'number':
         numberClick(target.value);
+        break;
+      case 'operator':
+        operatorClick(target.value);
+        break;
+      case 'equal':
+        equalClick();
         break;
 
       default:
