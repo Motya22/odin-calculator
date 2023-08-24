@@ -23,7 +23,15 @@ function operate(operator, firstNumber, secondNumber) {
     case '*':
       return multiply(firstNumber, secondNumber);
     case '/':
-      return divide(firstNumber, secondNumber);
+      if (secondNumber === 0) {
+        firstNumber = null;
+        secondNumber = null;
+        operator = null;
+
+        return 'Cannot divide by zero';
+      } else {
+        return divide(firstNumber, secondNumber);
+      }
 
     default:
       break;
@@ -45,9 +53,16 @@ function numberClick(numberValue) {
 }
 
 function operatorClick(operatorValue) {
+  if (!isFinite(displayValue)) {
+    return;
+  }
+
   if (firstNumber && operator) {
     secondNumber = displayValue;
-    displayValue = String(operate(operator, +firstNumber, +secondNumber));
+
+    const answer = operate(operator, +firstNumber, +secondNumber);
+
+    displayValue = isFinite(answer) ? String(roundAnswer(answer)) : answer;
     firstNumber = displayValue;
     secondNumber = null;
     operator = operatorValue;
@@ -59,11 +74,31 @@ function operatorClick(operatorValue) {
 }
 
 function equalClick() {
+  if (!operator || !isFinite(displayValue)) {
+    return;
+  }
+
   secondNumber = displayValue;
-  displayValue = String(operate(operator, +firstNumber, +secondNumber));
+
+  const answer = operate(operator, +firstNumber, +secondNumber);
+
+  displayValue = isFinite(answer) ? String(roundAnswer(answer)) : answer;
   firstNumber = displayValue;
   secondNumber = null;
   operator = null;
+  updateDisplay();
+}
+
+function roundAnswer(number) {
+  return Math.round(number * 100) / 100;
+}
+
+function clearAll() {
+  firstNumber = null;
+  secondNumber = null;
+  operator = null;
+  displayValue = '0';
+
   updateDisplay();
 }
 
@@ -89,6 +124,9 @@ keyboard.addEventListener('click', function (e) {
         break;
       case 'equal':
         equalClick();
+        break;
+      case 'clear-all':
+        clearAll();
         break;
 
       default:
