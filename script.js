@@ -106,6 +106,16 @@ function clearAll() {
   updateDisplay();
 }
 
+function deleteSymbol() {
+  if (displayValue.length === 1) {
+    displayValue = '0';
+  } else {
+    displayValue = displayValue.slice(0, -1);
+  }
+
+  updateDisplay();
+}
+
 let firstNumber = null;
 let secondNumber = null;
 let operator = null;
@@ -116,8 +126,10 @@ const keyboard = document.querySelector('.calculator__keyboard');
 keyboard.addEventListener('click', function (e) {
   const target = e.target;
 
-  if (target.hasAttribute('data-type')) {
-    const buttonType = target.getAttribute('data-type');
+  if (target.closest('button[data-type]')) {
+    const buttonType = target
+      .closest('button[data-type]')
+      .getAttribute('data-type');
 
     switch (buttonType) {
       case 'number':
@@ -131,6 +143,9 @@ keyboard.addEventListener('click', function (e) {
         break;
       case 'clear-all':
         clearAll();
+        break;
+      case 'backspace':
+        deleteSymbol();
         break;
 
       default:
