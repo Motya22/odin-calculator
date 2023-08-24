@@ -43,9 +43,16 @@ function updateDisplay() {
 }
 
 function numberClick(numberValue) {
-  if (displayValue === '0' || displayValue === firstNumber) {
+  if (
+    (displayValue === '0' && numberValue !== '.') ||
+    displayValue === firstNumber
+  ) {
     displayValue = numberValue;
   } else {
+    if (numberValue === '.' && displayValue.includes('.')) {
+      return;
+    }
+
     displayValue += numberValue;
   }
 
