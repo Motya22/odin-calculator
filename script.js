@@ -52,21 +52,25 @@ function numberClick(numberValue) {
   updateDisplay();
 }
 
+function calculate() {
+  secondNumber = displayValue;
+
+  const answer = operate(operator, +firstNumber, +secondNumber);
+
+  displayValue = isFinite(answer) ? String(roundAnswer(answer)) : answer;
+  firstNumber = displayValue;
+  secondNumber = null;
+  updateDisplay();
+}
+
 function operatorClick(operatorValue) {
   if (!isFinite(displayValue)) {
     return;
   }
 
   if (firstNumber && operator) {
-    secondNumber = displayValue;
-
-    const answer = operate(operator, +firstNumber, +secondNumber);
-
-    displayValue = isFinite(answer) ? String(roundAnswer(answer)) : answer;
-    firstNumber = displayValue;
-    secondNumber = null;
+    calculate();
     operator = operatorValue;
-    updateDisplay();
   } else {
     firstNumber = displayValue;
     operator = operatorValue;
@@ -78,15 +82,8 @@ function equalClick() {
     return;
   }
 
-  secondNumber = displayValue;
-
-  const answer = operate(operator, +firstNumber, +secondNumber);
-
-  displayValue = isFinite(answer) ? String(roundAnswer(answer)) : answer;
-  firstNumber = displayValue;
-  secondNumber = null;
+  calculate();
   operator = null;
-  updateDisplay();
 }
 
 function roundAnswer(number) {
