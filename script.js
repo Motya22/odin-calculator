@@ -153,3 +153,43 @@ keyboard.addEventListener('click', function (e) {
     }
   }
 });
+
+function getBtn(event) {
+  let key;
+
+  switch (event.key) {
+    case 'Escape':
+      key = 'Delete';
+      break;
+    case 'Enter':
+      key = '=';
+      break;
+
+    default:
+      key = event.key;
+      break;
+  }
+
+  if (document.querySelector(`button[value="${key}"]`)) {
+    const btn = document.querySelector(`button[value="${key}"]`);
+
+    return btn;
+  }
+}
+
+window.addEventListener('keydown', function (e) {
+  const btn = getBtn(e);
+
+  if (btn) {
+    btn.click();
+    btn.classList.add('pressed');
+  }
+});
+
+window.addEventListener('keyup', function (e) {
+  const btn = getBtn(e);
+
+  if (btn) {
+    btn.classList.remove('pressed');
+  }
+});

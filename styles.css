@@ -31,7 +31,7 @@ body {
 .calculator__display {
   min-height: 100px;
   text-align: right;
-  font-size: 30px;
+  font-size: 25px;
   color: #fff;
   border-bottom: 1px solid grey;
   margin-bottom: 10px;
@@ -40,6 +40,8 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .calculator__keyboard {
@@ -96,4 +98,11 @@ button.equal {
 button.equal:hover {
   cursor: pointer;
   background-color: rgba(51, 255, 216, 0.5);
+}
+
+button.pressed {
+  position: relative;
+  top: 3px;
+  box-shadow: -8px -5px 15px rgba(255, 255, 255, 0.1),
+    5px 2px 15px rgba(0, 0, 0, 0.2);
 }
